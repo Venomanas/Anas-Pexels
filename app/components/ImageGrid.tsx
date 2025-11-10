@@ -8,9 +8,13 @@ interface ImageGridProps {
   loading: boolean;
 }
 
-export default function ImageGrid({ photos }: ImageGridProps) {
-  if (!photos || photos.length === 0) {
-    return null;
+export default function ImageGrid({ photos , loading }: ImageGridProps) {
+  if (!photos || photos.length === 0 && loading) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-gray-500 text-lg">No photos to display</p>
+      </div>
+    );
   }
 
   return (
