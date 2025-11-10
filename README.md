@@ -1,9 +1,9 @@
-
 📸 Anas-Pexels
+
 A clean, modern photo gallery website inspired by the beautiful design of Pexels. This project brings pixel-perfect layouts to life using a fully type-safe, modern web stack.
 
 ✨ Preview
-![b367e345-8c4f-4f57-ab3b-a6bc022116ed](https://github.com/user-attachments/assets/622c6fc7-b1aa-4767-bd4b-ba89eb91029c)
+[![Anas-Pexels Preview](https://github.com/user-attachments/assets/622c6fc7-b1aa-4767-bd4b-ba89eb91029c)](https://anas-pexels.vercel.app/)
 
 
 🚀 Built With
