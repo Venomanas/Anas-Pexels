@@ -3,34 +3,276 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --search-bg: #f8fafc;
+  --search-border: #e2e8f0;
+  --search-focus-border: #0f172a;
+  --tag-text: #475569;
+  --tag-hover-bg: #e2e8f0;
+  --skeleton-base: #e2e8f0;
+  --skeleton-shine: #f1f5f9;
+  --overlay-bg: rgba(0, 0, 0, 0.85);
+  --drawer-bg: #ffffff;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --footer-bg: #f4f4f5;
+  --footer-border: #e2e8f0;
+  --muted: #94a3b8;
+  --error-bg: #fef2f2;
+  --error-border: #fca5a5;
+  --error-text: #7f1d1d;
+}
+
+.dark {
+  --background: #0a0a0f;
+  --foreground: #e2e8f0;
+  --card-bg: #15151f;
+  --card-border: #1e293b;
+  --header-bg: rgba(10, 10, 15, 0.9);
+  --search-bg: #15151f;
+  --search-border: #1e293b;
+  --search-focus-border: #3b82f6;
+  --tag-text: #94a3b8;
+  --tag-hover-bg: #1e293b;
+  --skeleton-base: #1e293b;
+  --skeleton-shine: #334155;
+  --overlay-bg: rgba(0, 0, 0, 0.92);
+  --drawer-bg: #0f0f1a;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --footer-bg: #0f0f1a;
+  --footer-border: #1e293b;
+  --muted: #64748b;
+  --error-bg: #1c0a0a;
+  --error-border: #7f1d1d;
+  --error-text: #fca5a5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-header-bg: var(--header-bg);
+  --color-search-bg: var(--search-bg);
+  --color-search-border: var(--search-border);
+  --color-search-focus-border: var(--search-focus-border);
+  --color-tag-text: var(--tag-text);
+  --color-tag-hover-bg: var(--tag-hover-bg);
+  --color-skeleton-base: var(--skeleton-base);
+  --color-skeleton-shine: var(--skeleton-shine);
+  --color-overlay-bg: var(--overlay-bg);
+  --color-drawer-bg: var(--drawer-bg);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-border: var(--footer-border);
+  --color-muted: var(--muted);
+  --color-error-bg: var(--error-bg);
+  --color-error-border: var(--error-border);
+  --color-error-text: var(--error-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
-  input :focus,
-  button :focus {
+  input:focus,
+  button:focus {
     outline: none !important;
     box-shadow: none !important;
   }
 }
 
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
+/* ─── Animations ─── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }
-.animate-spin-slow {
-  animation: spin-slow 2s linear infinite;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes eyeBlink {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(1);
+  }
+  45% {
+    transform: scaleY(0.1);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes pupilShift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base) 25%,
+    var(--skeleton-shine) 50%,
+    var(--skeleton-base) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+.animate-slide-out-right {
+  animation: slideOutRight 0.3s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-eye-blink {
+  animation: eyeBlink 3s ease-in-out infinite;
+}
+
+.animate-pupil-shift {
+  animation: pupilShift 2s ease-in-out infinite;
+}
+
+/* ─── Masonry ─── */
+.masonry-grid {
+  columns: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    columns: 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    columns: 4;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* ─── Scrollbar styling ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* ─── Glassmorphism ─── */
+.glass {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* ─── Base ─── */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Smooth transitions for theme switching */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
