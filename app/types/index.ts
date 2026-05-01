@@ -23,11 +23,15 @@ export interface PexelsPhoto {
 }
 export interface PexelsResponse {
   photos: PexelsPhoto[];
+  page: number;
+  per_page: number;
   total_results: number;
+  next_page?: string;
 }
 
 export interface AppState {
   page: number;
   query: string;
+  color: string;
   loading: boolean;
 }
